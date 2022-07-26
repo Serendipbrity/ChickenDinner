@@ -1,31 +1,35 @@
 {
+  "dependencies": {
+    "apollo-server-express": "^3.10.0",
+    "colors": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-async-handler": "^1.2.0",
+    "express-graphql": "^0.12.0",
+    "graphql": "^15.8.0",
+    "mongoose": "^6.4.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  },
   "name": "chickendinner",
+  "description": "ChickenDinner",
   "version": "1.0.0",
-  "description": "game/store organizer",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node backend/server.js",
-    "server": "nodemon backend/server.js"
+    "start": "node backend/index.js",
+    "dev": "nodemon backend/index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Serendipbrity/ChickenDinner.git"
   },
-  "author": "Brittani Court",
-  "license": "MIT",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/Serendipbrity/ChickenDinner/issues"
   },
-  "homepage": "https://github.com/Serendipbrity/ChickenDinner#readme",
-  "dependencies": {
-    "colors": "^1.4.0",
-    "dotenv": "^16.0.1",
-    "express": "^4.18.1",
-    "express-async-handler": "^1.2.0",
-    "mongoose": "^6.4.6"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.19"
-  }
+  "homepage": "https://github.com/Serendipbrity/ChickenDinner#readme"
 }
