@@ -1,9 +1,10 @@
-
+// const {postUser, getUsers, putUser, deleteUser} = require('../controller/userController');
 // const { users, stores, regions, games } = require('../sampleData');
 const { User } = require('../models/userModel');
 const { Store } = require('../models/storeModel');
 const { Region } = require('../models/regionModel');
 const { Game } = require('../models/gameModel');
+const mongoose = require('mongoose');
 
 const { GraphQLObjectType,
     GraphQLID,
@@ -11,8 +12,7 @@ const { GraphQLObjectType,
     GraphQLSchema, 
     GraphQLList,
     GraphQLInt,
-
-} = require('graphql');
+    GraphQLNonNull } = require('graphql');
 
 
 // --------------- USER TYPE ------------------
@@ -81,13 +81,14 @@ const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
         users: {
-            type: new GraphQLList(UserType),
-            resolve(parent, args) {
+            type: UserType,
+            resolve: (parent, args) => {
                 // return users;
-                return User.find();
+                return User.find({});
             }
 
         },
+    
         user: {
             type: UserType,
             args: { id: { type: GraphQLID } },
@@ -146,22 +147,59 @@ const RootQuery = new GraphQLObjectType({
     }
 });
 
+// ----------------- MUTATION TYPE -----------------
+const mutation = new GraphQLObjectType({
+    name: 'Mutation',
+    fields: {
+        // ---- ADD USER -----
+        addUser: {
+            type: UserType,
+            args: {
+                username: { type: GraphQLNonNull(GraphQLString) },
+                email: { type: GraphQLNonNull(GraphQLString) },
+                password: { type: GraphQLNonNull(GraphQLString) }
+            },
+            resolve(parent, args) { 
+                // create a new user
+                const user = new User({
+                    username: args.username,
+                    email: args.email,
+                    password: args.password
+                });
+                // save new user to database
+                return user.save();
+             }
+        }, 
+    // ----- DELETE USER -----
+        deleteUser: {
+            type: UserType,
+            args: {
+                id: { type: GraphQLNonNull(GraphQLID) }
+            },
+            resolve(parent, args) { 
+                // delete user from database
+                return User.findByIdAndRemove(args.id);
+             }
+        },
+        // ---- ADD STORE -----
+        addStore: {
+            type: StoreType,
+            args: {
+                routeOrder: { type: (GraphQLInt) },
+                storeName: { type: (GraphQLString) },
+                storeAddress: { type: (GraphQLString) },
+                region: { type: (GraphQLString) },
+                contactName: { type: (GraphQLString) },
+                contactInfo: { type: (GraphQLString) },
+                whenCanContact: { type: (GraphQLString) }
 
+            }
+        }
+    }
+});
 
-
-// const RootQuery = new GraphQLObjectType({
-//     name: 'RootQueryType',
-//     fields: {
-//         store: {
-//             type: StoreType,
-//             args: { id: { type: GraphQLID } },
-//             resolve(parent, args) { 
-//                 return stores.find(store => store.id === args.id);
-//             }
-//              }
-//         }
-// });
     
 module.exports = new GraphQLSchema({
-    query: RootQuery
+    query: RootQuery,
+    mutation
 });

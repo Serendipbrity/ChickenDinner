@@ -16,5 +16,4 @@ app.use('/graphql', graphqlHTTP({
     graphiql: process.env.NODE_ENV === 'development'
 }));
 
-app.listen(PORT, () => console.log(`Server running on PORT ${PORT}`));
-
+    app.listen(PORT, () => console.log(`Server running on PORT ${PORT}`));

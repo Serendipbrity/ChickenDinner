@@ -1,6 +1,7 @@
 // ---- FILE USED TO CONNECT TO MONGODB USING MONGOOSE ----
-
 const mongoose = require('mongoose');
+
+require('dotenv').config()
 
 const connectDB = async () => {
     try {
