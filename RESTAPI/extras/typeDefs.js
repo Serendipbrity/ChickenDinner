@@ -1,3 +1,8 @@
+// ----- FILE ONLY USED IF YOU SEPARATE SCHEMA.JS -----
+
+// this file was orininally in the backend/schemas/
+
+
 // ------ FILE FOR DEFINING THE QUERY AND MUTATION RESOLVERS -----
 
 // import the gql tagged template function

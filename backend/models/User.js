@@ -1,6 +1,7 @@
 // ----- FILE FOR USER MODEL ------
 
 const mongoose = require('mongoose');
+const {model} = require('mongoose');
 
 const UserSchema = new mongoose.Schema(
     {
@@ -21,4 +22,5 @@ const UserSchema = new mongoose.Schema(
         timestamps: true
     });
 
-    module.exports = mongoose.model('User', UserSchema);
+    const User = model('User', UserSchema);
+    module.exports = {User};

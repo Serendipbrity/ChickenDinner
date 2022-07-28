@@ -1,10 +1,13 @@
+//---- ONLY USE THIS FILE IF YOU CHANGE THE PROJECT TO A REST API -----
+
+
 // -------- FILE USED FOR STORE ROUTES --------
 
 
 // so you can user express server
 const express = require('express');
 const router = express.Router();
-const {getStores, postStore, putStore, deleteStore} = require('../controller/storeController');
+const {getStores, postStore, putStore, deleteStore} = require('../../RESTAPI/controller/storeController');
 
 
 // ---- GET STORES ---- &&

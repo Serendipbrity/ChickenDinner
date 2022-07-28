@@ -1,10 +1,13 @@
+//---- ONLY USE THIS FILE IF YOU CHANGE THE PROJECT TO A REST API -----
+
+
 // ----- FILE FOR USER ROUTE FUNCTIONALITIES -----
 
 // use error handler instead of having to use try/catch
 const asyncHandler = require('express-async-handler');
 
 // User Model
-const User = require('../models/userModel');
+const User = require('../../backend/models/User');
 
 //  -----GET USERS -----
 // route GET /api/users

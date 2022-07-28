@@ -2,6 +2,7 @@
 
 
 const mongoose = require('mongoose');
+const {model} = require('mongoose');
 
 const StoreSchema = new mongoose.Schema({
     routeOrder: {
@@ -40,4 +41,5 @@ const StoreSchema = new mongoose.Schema({
 });
 
 // model name is Store and then the schema is storeSchema
-module.exports = mongoose.model('Store', StoreSchema);
+const Store = model('Store', StoreSchema);
+module.exports = {Store};

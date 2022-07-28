@@ -1,6 +1,7 @@
 //  ------ FILE FOR REPORTS MODEL -------
 
 const mongoose = require('mongoose');
+const {model} = require('mongoose');
 
 const ReportSchema = new mongoose.Schema({
     storeName: {
@@ -67,4 +68,6 @@ const ReportSchema = new mongoose.Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('Store', ReportSchema);
+
+const Report = model('Report', ReportSchema);
+module.exports = {Report};

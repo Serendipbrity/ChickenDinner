@@ -1,4 +1,9 @@
-// ------ THIS FILE IS THE ENTRY POINT FOR THE SERVER -------
+// ------ THIS FILE IS ONLY USED IF PROJECT USED/CHANGED TO A REST API
+// BACKEND/INDEX.JS USED INSTEAD OF BACKEND/SERVER.JS
+
+// file originally in backend/
+
+// ----------THE ENTRY POINT FOR THE SERVER-------
 
 const colors = require('colors');
 const express = require('express');
@@ -8,9 +13,9 @@ const dotenv = require('dotenv').config();
 // const { errorHandler } = require('./middleware/errorMiddleware');
 
 const { ApolloServer } = require('apollo-server-express');
-const { typeDefs, resolvers } = require('./schemas');
-const schema = require('./schemas');
-const connectDB = require('./config/db');
+const { typeDefs, resolvers } = require('./extras');
+const schema = require('./extras');
+const connectDB = require('../backend/config/db');
 
 // run connection to mongodb
 connectDB();
@@ -36,10 +41,10 @@ app.use('/graphql', graphqlHTTP({
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/api/users', require('./routes/userRoutes'));
+app.use('/api/users', require('../backend/routes/userRoutes'));
 // app.use('api/regions', require('./routes/regionRoutes'));
-app.use('/api/stores', require('./routes/storeRoutes'));
-app.use('/api/games', require('./routes/gameRoutes'));
+app.use('/api/stores', require('../backend/routes/storeRoutes'));
+app.use('/api/games', require('../backend/routes/gameRoutes'));
 // app.use('/api/reports', require('./routes/reportRoutes'));
 
 const startApolloServer = async (typeDefs, resolvers) => {

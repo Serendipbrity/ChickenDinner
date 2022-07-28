@@ -1,9 +1,9 @@
 // const {postUser, getUsers, putUser, deleteUser} = require('../controller/userController');
 // const { users, stores, regions, games } = require('../sampleData');
-const { User } = require('../models/userModel');
-const { Store } = require('../models/storeModel');
-const { Region } = require('../models/regionModel');
-const { Game } = require('../models/gameModel');
+const { User } = require('../models/User');
+const { Store } = require('../models/Store');
+const { Region } = require('../models/Region');
+const { Game } = require('../models/Game');
 const mongoose = require('mongoose');
 
 const { GraphQLObjectType,
@@ -38,12 +38,13 @@ const StoreType = new GraphQLObjectType({
         contactName: { type: GraphQLString },
         contactInfo: { type: GraphQLString },
         whenCanContact: { type: GraphQLString },
-        gameId: { type: new GraphQLList(GraphQLID) },
+        // gameId: { type: new GraphQLList(GraphQLID) },
+        // all games associated with this store
         game: {
             type: (GameType),
             resolve(parent, args) {
                 // return games.find((game) => game.id === parent.gameId);
-                return games.findById(parent.gameId);
+                return Game.findById(parent.gameId);
             }
         }
     })
@@ -55,8 +56,15 @@ const GameType = new GraphQLObjectType({
     fields: () => ({
         id: { type: GraphQLID },
         gameBrand: { type: GraphQLString },
-        GameType: { type: GraphQLString }
+        gameType: { type: GraphQLString },
+        machineNumber: {type: GraphQLInt}
         // add reports
+        // report: {
+        //     type: (ReportType),
+        //     resolve(parent, args) {
+        //         return Report.findById(parent.reportId);
+        //     }
+        // }
     })
 });
 
@@ -67,11 +75,13 @@ const RegionType = new GraphQLObjectType({
         id: { type: GraphQLID },
         regionName: { type: GraphQLString },
         // storeId: { type: new GraphQLList(GraphQLID) },
+
+        // all stores in this region
         store: {
             type:(StoreType),
             resolve(parent, args) {
                 // return stores.find((store) => store.id === parent.storeId);
-                return stores.findById(parent.storeId);
+                return Store.findById(parent.storeId);
             }
         }
     })
@@ -81,10 +91,10 @@ const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
         users: {
-            type: UserType,
+            type: new GraphQLList(UserType),
             resolve: (parent, args) => {
                 // return users;
-                return User.find({});
+                return User.find();
             }
 
         },
@@ -170,7 +180,7 @@ const mutation = new GraphQLObjectType({
                 return user.save();
              }
         }, 
-    // ----- DELETE USER -----
+         // ----- DELETE USER -----
         deleteUser: {
             type: UserType,
             args: {
@@ -186,14 +196,94 @@ const mutation = new GraphQLObjectType({
             type: StoreType,
             args: {
                 routeOrder: { type: (GraphQLInt) },
-                storeName: { type: (GraphQLString) },
-                storeAddress: { type: (GraphQLString) },
-                region: { type: (GraphQLString) },
+                storeName: { type: GraphQLNonNull(GraphQLString) },
+                storeAddress: { type: GraphQLNonNull(GraphQLString) },
+                region: { type: GraphQLNonNull(GraphQLString) },
                 contactName: { type: (GraphQLString) },
                 contactInfo: { type: (GraphQLString) },
-                whenCanContact: { type: (GraphQLString) }
-
-            }
+                whenCanContact: { type: (GraphQLString) },
+                // gameId: { type: (GraphQLID) }
+            },
+            resolve(parent, args) { 
+                // create a new store
+                const store = new Store({
+                    routeOrder: args.routeOrder,
+                    storeName: args.storeName,
+                    storeAddress: args.storeAddress,
+                    region: args.region,
+                    contactName: args.contactName,
+                    contactInfo: args.contactInfo,
+                    whenCanContact: args.whenCanContact,
+                });
+                // save new store to database
+                return store.save();
+             }
+        },
+             // ----- DELETE STORE -----
+             deleteStore: {
+                type: StoreType,
+                args: {
+                    id: { type: GraphQLNonNull(GraphQLID) }
+                },
+                resolve(parent, args) { 
+                    // delete user from database
+                    return Store.findByIdAndRemove(args.id);
+                 }
+            },
+              // ----- ADD GAME ------
+              addGame: {
+                type: GameType,
+                args: {
+                    gameType: { type: GraphQLNonNull(GraphQLString) },
+                    gameBrand: { type: GraphQLNonNull(GraphQLString) },
+                    machineNumber: { type: GraphQLNonNull(GraphQLInt) }
+                },
+                resolve(parent, args) { 
+                    // create a new game
+                    const game = new Game({
+                        gameType: args.gameType,
+                        gameBrand: args.gameBrand
+                    });
+                    // save new game to database
+                    return game.save();
+                 }
+        },
+        // ----- DELETE GAME -----
+        deleteGame: {
+            type: GameType,
+            args: {
+                id: { type: GraphQLNonNull(GraphQLID) }
+            },
+            resolve(parent, args) { 
+                // delete game from database
+                return Game.findByIdAndRemove(args.id);
+             }
+        },
+                // ----- ADD REGION ------
+                addRegion: {
+                    type: RegionType,
+                    args: {
+                        regionName: { type: GraphQLNonNull(GraphQLString) }
+                    },
+                    resolve(parent, args) { 
+                        // create a new game
+                        const region = new Region({
+                            regionName: args.regionName
+                        });
+                        // save new game to database
+                        return region.save();
+                     }
+        },
+                   // ----- DELETE REGION -----
+        deleteRegion: {
+            type: RegionType,
+            args: {
+                id: { type: GraphQLNonNull(GraphQLID) }
+            },
+            resolve(parent, args) { 
+                // delete region from database
+                return Region.findByIdAndRemove(args.id);
+             }
         }
     }
 });

@@ -18,8 +18,8 @@ Keep track of maintenance requests. Allow store owners/associates to submit thei
 ## Installation
 npm i apollo-server-express graphql dotenv mongoose colors
 npm i -D nodemon
-npm run server to start running server
 npm install express-async-handler (instead of using try/catch)
+npm run dev 
 
 
 ## Technologies

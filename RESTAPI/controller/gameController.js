@@ -1,3 +1,5 @@
+//---- ONLY USE THIS FILE IF YOU CHANGE THE PROJECT TO A REST API -----
+
 // ----- FILE FOR GAME ROUTE FUNCTIONALITIES -----
 
 // use error handler instead of having to use try/catch
@@ -5,7 +7,7 @@ const asyncHandler = require('express-async-handler');
 
 
 // Game Model
-const Game = require('../models/gameModel');
+const Game = require('../../backend/models/Game');
 
 // ----- GET GAMES -----
 // route GET /api/games

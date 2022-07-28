@@ -1,10 +1,12 @@
+//---- ONLY USE THIS FILE IF YOU CHANGE THE PROJECT TO A REST API -----
+
 // ----- FILE FOR STORE ROUTE FUNCTIONALITIES -----
 
 // use error handler instead of having to use try/catch
 const asyncHandler = require('express-async-handler');
 
 // Store Model
-const Store = require('../models/storeModel');
+const Store = require('../../backend/models/Store');
 
 // --------- GET STORES ------------
 // route GET /api/stores

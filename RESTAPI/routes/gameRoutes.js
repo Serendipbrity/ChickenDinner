@@ -1,3 +1,5 @@
+//---- ONLY USE THIS FILE IF YOU CHANGE THE PROJECT TO A REST API -----
+
 // -------- FILE USED FOR GAME ROUTES --------
 
 
