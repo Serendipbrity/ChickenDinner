@@ -11,12 +11,13 @@
     "mongoose": "^6.4.7"
   },
   "devDependencies": {
+    "concurrently": "^7.3.0",
     "nodemon": "^2.0.19"
   },
   "name": "chickendinner",
   "description": "ChickenDinner",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node backend/index.js",
     "dev": "nodemon backend/index.js"

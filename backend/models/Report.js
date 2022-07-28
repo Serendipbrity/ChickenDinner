@@ -1,73 +1,75 @@
 //  ------ FILE FOR REPORTS MODEL -------
 
-const mongoose = require('mongoose');
-const {model} = require('mongoose');
+const mongoose = require("mongoose");
+const { model } = require("mongoose");
 
-const ReportSchema = new mongoose.Schema({
+const ReportSchema = new mongoose.Schema(
+  {
     storeName: {
-        type: String,
+      type: String,
     },
     beginDate: {
-        type: Date,
+      type: Date,
     },
     endDate: {
-        type: Date,
+      type: Date,
     },
     machineNumber: {
-        type: Number,
+      type: Number,
     },
     lifetimeIn: {
-        type: Number,
+      type: Number,
     },
     lifetimeOut: {
-        type: Number,
+      type: Number,
     },
     lifetimeTotal: {
-        type: Number,
+      type: Number,
     },
     previousIn: {
-        type: Number,
+      type: Number,
     },
     previousOut: {
-        type: Number,
+      type: Number,
     },
     periodIn: {
-        type: Number,
+      type: Number,
     },
     periodOut: {
-        type: Number,
+      type: Number,
     },
     net: {
-        type: Number,
+      type: Number,
     },
     locationPercentage: {
-        type: Number,
+      type: Number,
     },
     operatorPercentage: {
-        type: Number,
+      type: Number,
     },
     profit: {
-        type: Number,
+      type: Number,
     },
     collect: {
-        type: Number,
+      type: Number,
     },
     paidOut: {
-        type: Number,
+      type: Number,
     },
     locationTotal: {
-        type: Number,
+      type: Number,
     },
     operatorTotal: {
-        type: Number,
+      type: Number,
     },
     signature: {
-        type: String,
-    }
-}, {
-    timestamps: true
-});
+      type: String,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-
-const Report = model('Report', ReportSchema);
-module.exports = {Report};
+const Report = model("Report", ReportSchema);
+module.exports = { Report };

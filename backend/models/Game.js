@@ -1,23 +1,24 @@
 // ------- FILE FOR GAME MODEL -------
 
-const mongoose = require('mongoose');
-const {model} = require('mongoose');
+const mongoose = require("mongoose");
+const { model } = require("mongoose");
 
-const GameSchema = new mongoose.Schema({
+const GameSchema = new mongoose.Schema(
+  {
     gameBrand: {
-        type: String,
+      type: String,
     },
     gameType: {
-        type: mongoose.Schema.Types.Mixed,
+      type: mongoose.Schema.Types.Mixed,
     },
     machineNumber: {
-        type: Number,
-    }
-}, {
-    timestamps: true
-});
+      type: Number,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-
-
-const Game = model('Game', GameSchema);
-module.exports = {Game};
+const Game = model("Game", GameSchema);
+module.exports = { Game };

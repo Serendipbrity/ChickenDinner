@@ -19,11 +19,15 @@ Keep track of maintenance requests. Allow store owners/associates to submit thei
 npm i apollo-server-express graphql dotenv mongoose colors
 npm i -D nodemon
 npm install express-async-handler (instead of using try/catch)
-npm run dev 
+npm run dev to run server
+npx create-react-app <filename>
+npm i @apollo/client graphql react-router-dom react-icons
+npm start to run front end server (in client directory)
+npm install react-bootstrap bootstrap
 
 
 ## Technologies
-React, Node, npm, Express, MongoDB, Mongoose, GraphQL, JSONWT, Apollo Server, nodemon, React Router, concurrently, faker, jwt-decode, bcrypt, inquirer, dotenv, colors
+React, Node, npm, Express, MongoDB, Mongoose, GraphQL, JSONWT, Apollo Server, nodemon, React Router, concurrently, faker, jwt-decode, bcrypt, inquirer, dotenv, colors, React Bootstrap, Bootstrap
 
 ## Screenshot
 
