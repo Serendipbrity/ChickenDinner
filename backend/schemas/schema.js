@@ -88,12 +88,12 @@ const RegionType = new GraphQLObjectType({
         return Store.findById(parent.storeId);
       },
       },
-      storeAdd: {
-          type: StoreType,
-          resolve(parent, args) { 
-              return Store.findById(child.regionId);
-           }
-    }
+    //   storeAdd: {
+    //       type: StoreType,
+    //       resolve(parent, args) { 
+    //           return Store.findById(child.regionId);
+    //        }
+    // }
   }),
 });
 
@@ -118,9 +118,13 @@ const RootQuery = new GraphQLObjectType({
     },
     stores: {
       type: new GraphQLList(StoreType),
+      args: { region: { type: GraphQLString } },
       resolve(parent, args) {
-        // return stores;
-        return Store.find();
+        // search by region
+        const params = args.region ? { region: args.region } : {};
+        // search by storeName
+        const storeNameSearch = args.storeName ? { storeName: args.storeName } : {};
+        return Store.find( params, storeNameSearch);
       },
     },
     store: {
@@ -145,6 +149,13 @@ const RootQuery = new GraphQLObjectType({
         // return regions.find(region => region.id === args.id);
         return Region.findById(args.id);
       },
+    },
+    storesByRegion: {
+      type: new GraphQLList(StoreType),
+      args: { regionName: { type: GraphQLString } },
+      resolve(parent, args) { 
+        return Store.find({regionName: args.regionName});
+       }
     },
     games: {
       type: new GraphQLList(GameType),
@@ -210,7 +221,7 @@ const mutation = new GraphQLObjectType({
         contactInfo: { type: GraphQLString },
         whenCanContact: { type: GraphQLString },
         directions: { type: GraphQLString },
-        gameId: { type: (GraphQLID) }
+        // gameId: { type: (GraphQLID) }
       },
       resolve(parent, args) {
         // create a new store
@@ -237,7 +248,7 @@ const mutation = new GraphQLObjectType({
               routeOrder: { type: GraphQLInt },
               storeName: { type: (GraphQLString) },
               storeAddress: { type: (GraphQLString) },
-              region: { type: (GraphQLString) },
+              region: { type: (GraphQLID), ref: "Region" },
               contactName: { type: (GraphQLString) },
               contactInfo: { type: (GraphQLString) },
               whenCanContact: { type: (GraphQLString) },
@@ -291,6 +302,7 @@ const mutation = new GraphQLObjectType({
         return game.save();
       },
     },
+
     // ----- DELETE GAME -----
     deleteGame: {
       type: GameType,
@@ -318,7 +330,8 @@ const mutation = new GraphQLObjectType({
         // save new game to database
         return region.save();
       },
-      },
+    },
+  // -----ADD STORE TO REGION -----
       addStoreToRegion: {
           type: RegionType,
           args: {
@@ -351,3 +364,4 @@ module.exports = new GraphQLSchema({
   query: RootQuery,
   mutation,
 });
+

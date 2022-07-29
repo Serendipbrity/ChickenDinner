@@ -2,20 +2,21 @@
 
 const mongoose = require("mongoose");
 const { model } = require("mongoose");
-// const stores = require('../models/storeModel');
+
+const { Store} = require('../models/Store');
 
 const RegionSchema = new mongoose.Schema({
   regionName: {
     type: String,
+    enum: ["North", "South", "East", "West", "L"],
   },
-  storeId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Store",
-  },
-  regionId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Region",
-  }
+//   stores: {
+//     type: [{ Store }],
+// },
+  // storeId: {
+  //   type: [mongoose.Schema.Types.ObjectId],
+  //   ref: "Store"
+  // }
 });
 
 

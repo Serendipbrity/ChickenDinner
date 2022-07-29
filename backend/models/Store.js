@@ -2,9 +2,13 @@
 
 const mongoose = require("mongoose");
 const { model } = require("mongoose");
+const {Game} = require('../models/Game');
 
 const StoreSchema = new mongoose.Schema(
   {
+    // _id: {
+    //   type: 
+    // }
     routeOrder: {
       type: Number,
     },
@@ -33,10 +37,15 @@ const StoreSchema = new mongoose.Schema(
     directions: {
       type: String,
     },
+    // games: [Game]
     gameId: {
-      type: [mongoose.Schema.Types.ObjectId],
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Game",
     },
+    regionId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Region",
+    }
   },
   {
     // create updatedAt and createdAt fields
@@ -47,3 +56,9 @@ const StoreSchema = new mongoose.Schema(
 // model name is Store and then the schema is storeSchema
 const Store = model("Store", StoreSchema);
 module.exports = { Store };
+
+
+
+// "region": "62e1d4485ef61646250895b6"
+// "region": "West"
+// "region": "62e1d4485ef61646250895b6"
