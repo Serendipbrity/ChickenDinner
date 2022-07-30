@@ -4,6 +4,7 @@ const { User } = require("../models/User");
 const { Store } = require("../models/Store");
 const { Region } = require("../models/Region");
 const { Game } = require("../models/Game");
+const {Report} = require('../models/Report');
 const mongoose = require("mongoose");
 
 const {
@@ -13,7 +14,7 @@ const {
   GraphQLSchema,
   GraphQLList,
   GraphQLInt,
-    GraphQLNonNull,
+  GraphQLNonNull,
   GraphQLEnumType
 } = require("graphql");
 
@@ -25,50 +26,6 @@ const UserType = new GraphQLObjectType({
     username: { type: GraphQLString },
     password: { type: GraphQLString },
     email: { type: GraphQLString },
-  }),
-});
-
-//  ---------------- STORE TYPE -----------------
-const StoreType = new GraphQLObjectType({
-  name: "Store",
-  fields: () => ({
-    id: { type: GraphQLID },
-    routeOrder: { type: GraphQLInt },
-    storeName: { type: GraphQLString },
-      storeAddress: { type: GraphQLString },
-    // TODO -- make region an options list from available regions with option to create new region
-    region: { type: GraphQLString },
-    contactName: { type: GraphQLString },
-    contactInfo: { type: GraphQLString },
-    whenCanContact: { type: GraphQLString },
-    directions: { type: GraphQLString },
-    // gameId: { type: new GraphQLList(GraphQLID) },
-    // all games associated with this store
-    game: {
-      type: GameType,
-      resolve(parent, args) {
-        // return games.find((game) => game.id === parent.gameId);
-        return Game.findById(parent.gameId);
-      },
-    },
-  }),
-});
-
-// ---------------- GAME TYPE -----------------
-const GameType = new GraphQLObjectType({
-  name: "Game",
-  fields: () => ({
-    id: { type: GraphQLID },
-    gameBrand: { type: GraphQLString },
-    gameType: { type: GraphQLString },
-    machineNumber: { type: GraphQLInt },
-    // add reports
-    // report: {
-    //     type: (ReportType),
-    //     resolve(parent, args) {
-    //         return Report.findById(parent.reportId);
-    //     }
-    // }
   }),
 });
 
@@ -97,12 +54,92 @@ const RegionType = new GraphQLObjectType({
   }),
 });
 
+
+//  ---------------- STORE TYPE -----------------
+const StoreType = new GraphQLObjectType({
+  name: "Store",
+  fields: () => ({
+    id: { type: GraphQLID },
+    routeOrder: { type: GraphQLInt },
+    storeName: { type: GraphQLString },
+      storeAddress: { type: GraphQLString },
+    // TODO -- make region an options list from available regions with option to create new region
+    region: { type: GraphQLString },
+    contactName: { type: GraphQLString },
+    contactInfo: { type: GraphQLString },
+    whenCanContact: { type: GraphQLString },
+    directions: { type: GraphQLString },
+    // gameId: { type: new GraphQLList(GraphQLID) },
+    // all games associated with this store
+    game: {
+      type: new GraphQLList(GameType),
+      resolve(parent, args) {
+        // return games.find((game) => game.id === parent.gameId);
+        return Game.find(parent.gameId);
+      },
+    },
+  }),
+});
+
+// ---------------- GAME TYPE -----------------
+const GameType = new GraphQLObjectType({
+  name: "Game",
+  fields: () => ({
+    id: { type: GraphQLID },
+    gameBrand: { type: GraphQLString },
+    gameType: { type: GraphQLString },
+    machineNumber: { type: GraphQLInt },
+    // add reports
+    // report: {
+    //     type: (ReportType),
+    //     resolve(parent, args) {
+    //         return Report.findById(parent.reportId);
+    //     }
+    // }
+  }),
+});
+
+// ---------------- REPORT TYPE -----------------
+const ReportType = new GraphQLObjectType({
+  name: "Report",
+  fields: () => ({
+    id: { type: GraphQLID },
+    storeName: { type: GraphQLString },
+    beginDate: { type: GraphQLString },
+    endDate: { type: GraphQLString },
+    machineNumber: { type: GraphQLInt },
+    lifetimeIn: { type: GraphQLInt },
+    lifetimeOut: { type: GraphQLInt },
+    lifetimeTotal: { type: GraphQLInt },
+    previousIn: { type: GraphQLInt },
+    previousOut: { type: GraphQLInt },
+    periodIn: { type: GraphQLInt },
+    periodOut: { type: GraphQLInt },
+    net: { type: GraphQLInt },
+    locationPercentage: { type: GraphQLInt },
+    operatorPercentage: { type: GraphQLInt },
+    profit: { type: GraphQLInt },
+    collect: { type: GraphQLInt },
+    paidOut: { type: GraphQLInt },
+    locationTotal: { type: GraphQLInt },
+    operatorTotal: { type: GraphQLInt },
+    signature: { type: GraphQLString },
+  })
+});
+
+
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
+    reports: {
+      type: new GraphQLList(ReportType),
+      resolve(parent, args) { 
+        return Report.find();
+      }
+       },
     users: {
       type: new GraphQLList(UserType),
-      resolve: (parent, args) => {
+      resolve: (parent, args) =>{
         // return users;
         return User.find();
       },
@@ -179,6 +216,67 @@ const RootQuery = new GraphQLObjectType({
 const mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: {
+    // -----ADD REPORT ------
+    addReport: {
+      type: ReportType,
+      args: {
+        storeName: { type: GraphQLString },
+        beginDate: { type: GraphQLString },
+        endDate: { type: GraphQLString },
+        machineNumber: { type: GraphQLInt },
+        lifetimeIn: { type: GraphQLInt },
+        lifetimeOut: { type: GraphQLInt },
+        lifetimeTotal: { type: GraphQLInt },
+        previousIn: { type: GraphQLInt },
+        previousOut: { type: GraphQLInt },
+        periodIn: { type: GraphQLInt },
+        periodOut: { type: GraphQLInt },
+        net: { type: GraphQLInt },
+        locationPercentage: { type: GraphQLInt },
+        operatorPercentage: { type: GraphQLInt },
+        profit: { type: GraphQLInt },
+        collect: { type: GraphQLInt },
+        paidOut: { type: GraphQLInt },
+        locationTotal: { type: GraphQLInt },
+        operatorTotal: { type: GraphQLInt },
+        signature: { type: GraphQLString },
+      },
+      resolve(parent, args) { 
+        const report = new Report({
+          storeName: args.storeName,
+          beginDate: args.beginDate,
+          endDate: args.endDate,
+          machineNumber: args.machineNumber,
+          lifetimeIn: args.lifetimeIn,
+          lifetimeOut: args.lifetimeOut,
+          lifetimeTotal: args.lifetimeTotal,
+          previousIn: args.previousIn,
+          previousOut: args.previousOut,
+          periodIn: args.periodIn,
+          periodOut: args.periodOut,
+          net: args.net,
+          locationPercentage: args.locationPercentage,
+          operatorPercentage: args.operatorPercentage,
+          profit: args.profit,
+          collect: args.collect,
+          paidOut: args.paidOut,
+          locationTotal: args.locationTotal,
+          operatorTotal: args.operatorTotal,
+          signature: args.signature,
+        });
+        return report.save();
+       }
+    },
+    // ----DELETE REPORT ------
+    deleteReport: {
+      type: ReportType,
+      args: {
+        id: { type: GraphQLID },
+      },
+      resolve(parent, args) { 
+        return Report.findByIdAndRemove(args.id);
+       }
+    },
     // ---- ADD USER -----
     addUser: {
       type: UserType,
@@ -253,7 +351,7 @@ const mutation = new GraphQLObjectType({
               contactInfo: { type: (GraphQLString) },
               whenCanContact: { type: (GraphQLString) },
               directions: { type: (GraphQLString) },
-                gameId: { type: (GraphQLID) }
+                gameId: { type: new GraphQLList[(GraphQLID)] }
           },
           resolve(parent, args) {
               return Store.findByIdAndUpdate(args.id, {
@@ -266,8 +364,11 @@ const mutation = new GraphQLObjectType({
                       contactInfo: args.contactInfo,
                       whenCanContact: args.whenCanContact,
                       directions: args.directions,
-                        gameId: args.gameId,
-                  },
+                        // gameId: args.gameId,
+                }, 
+                $push: [{
+                    gameId: args.gameId,
+                }],
                 //   if it is not there, it will create a new one
               }, { new: true });
            }

@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@syncfusion/ej2-react-spreadsheet": "^20.2.40",
     "apollo-server-express": "^3.10.0",
     "colors": "^1.4.0",
     "cors": "^2.8.5",

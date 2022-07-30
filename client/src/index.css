@@ -1,3 +1,4 @@
+@import url("https://cdn.syncfusion.com/ej2/bootstrap.css");
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -21,9 +22,16 @@ code {
   margin-right: 10px;
 }
 
-#btnE, btnM {
+#btnE, #btnM {
   margin-left: 15px;
   margin-right: 15px;
+}
+
+#routesHeader {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 table {

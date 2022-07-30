@@ -24,6 +24,7 @@ npx create-react-app <filename>
 npm i @apollo/client graphql react-router-dom react-icons
 npm start to run front end server (in client directory)
 npm install react-bootstrap bootstrap
+npm i @syncfusion/ej2-react-spreadsheet
 
 
 ## Technologies

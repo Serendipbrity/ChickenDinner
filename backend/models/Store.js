@@ -38,10 +38,10 @@ const StoreSchema = new mongoose.Schema(
       type: String,
     },
     // games: [Game]
-    gameId: {
+    gameId: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: "Game",
-    },
+    }],
     regionId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Region",

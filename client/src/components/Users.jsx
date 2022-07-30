@@ -1,7 +1,7 @@
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import UserRow from './UserRow';
-import { GET_USERS } from '../queries/userQueries';
 import Spinner from './Spinner';
+import { GET_USERS } from '../queries/userQueries';
 
 
 export default function Users() {
@@ -13,11 +13,13 @@ export default function Users() {
             {!loading && !error && (
                 <table className='table table-hover mt-3'>
                     <thead className='colNames'>
-                        <td>username </td>
-                        <td>email</td>
-                        <td>password</td>
-                        <td>id</td>
-                        <td></td>
+                        <tr>
+                        <th>username </th>
+                        <th>email</th>
+                        <th>password</th>
+                        <th>id</th>
+                            <td></td>
+                        </tr>
                     </thead>
                     <tbody>
                         {data.users.map(user => (

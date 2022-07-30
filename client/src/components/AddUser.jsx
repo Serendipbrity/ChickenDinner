@@ -1,22 +1,48 @@
 import { useState } from "react";
 import { FaUser } from "react-icons/fa";
 import { useMutation } from "@apollo/client";
+import { ADD_USER } from "../mutations/userMutations";
+import {GET_USERS} from "../queries/userQueries";
 
-export default function AddUserModel() {
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
 
-    const onSubmit = async (e) => { 
-        e.preventDefault();
-        console.log(username, email, password);
-     }
+
+
+export default function AddUser() {
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+
+    const [addUser] = useMutation(ADD_USER, {
+      variables: { username, email, password },
+      update(cache, { data: { addUser } }) { 
+        const { users } = cache.readQuery({ query: GET_USERS });
+    
+        cache.writeQuery({
+          query: GET_USERS,
+          data: { users: [...users, addUser] }
+        });
+      }
+    });
+  
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (username === "" || email === "" || password === "") {
+      return alert("Please fill in all fields");
+    }
+    addUser(username, email, password);
+
+    // clear the form
+    setUsername("");
+    setEmail("");
+    setPassword("");
+  };
   return (
     <>
       <button
         id="btnE"
         type="button"
-        class="btn btn-secondary"
+        className="btn btn-secondary"
         data-bs-toggle="modal"
         data-bs-target="#addUserModel"
       >
@@ -29,7 +55,7 @@ export default function AddUserModel() {
       <button
         id="btnM"
         type="button"
-        class="btn btn-primary"
+        className="btn btn-primary"
         data-bs-toggle="modal"
         data-bs-target="#addUserModel"
       >
@@ -40,25 +66,25 @@ export default function AddUserModel() {
       </button>
 
       <div
-        class="modal fade"
+        className="modal fade"
         id="addUserModel"
         aria-labelledby="addUserModelLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="addUserModelLabel">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="addUserModelLabel">
                 Add Employee
               </h5>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               <form onSubmit={onSubmit}>
                 <div className="mb-3">
                   <label className="form-label" >Username: </label>
@@ -68,7 +94,7 @@ export default function AddUserModel() {
                                   <label className="form-label" >Password: </label>
                                   <input type="text" className="form-control" id="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
                               </div>
-                              <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
+                              <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Submit</button>
               </form>
             </div>
           </div>
