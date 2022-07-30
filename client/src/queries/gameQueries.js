@@ -17,6 +17,7 @@ query game($id: ID!) {
         id
         gameType
         gameBrand
+        machineNumber
     }
 }`
 

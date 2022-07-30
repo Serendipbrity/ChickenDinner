@@ -14,16 +14,7 @@ query region($id: ID!) {
     region(id: $id) {
         id
         regionName
-        store {
-            id
-            routeOrder
-            storeName
-            storeAddress
-            region
-            contactName
-            whenCanContact
-            directions
-        }
+    
     }
 }`
 

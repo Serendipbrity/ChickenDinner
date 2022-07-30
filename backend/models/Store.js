@@ -42,10 +42,10 @@ const StoreSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Game",
     }],
-    regionId: {
+    regionId: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: "Region",
-    }
+    }],
   },
   {
     // create updatedAt and createdAt fields

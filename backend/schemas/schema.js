@@ -72,10 +72,10 @@ const StoreType = new GraphQLObjectType({
     // gameId: { type: new GraphQLList(GraphQLID) },
     // all games associated with this store
     game: {
-      type: new GraphQLList(GameType),
+      type: GameType,
       resolve(parent, args) {
         // return games.find((game) => game.id === parent.gameId);
-        return Game.find(parent.gameId);
+        return Game.findById(parent.gameId);
       },
     },
   }),
@@ -89,15 +89,22 @@ const GameType = new GraphQLObjectType({
     gameBrand: { type: GraphQLString },
     gameType: { type: GraphQLString },
     machineNumber: { type: GraphQLInt },
-    // add reports
-    // report: {
-    //     type: (ReportType),
-    //     resolve(parent, args) {
-    //         return Report.findById(parent.reportId);
-    //     }
-    // }
+    report: {
+      type: ReportType,
+      resolve(parent, args) {
+        return Report.findById(parent.reportId);
+      },
+    },
   }),
+  // add reports
+  // report: {
+  //     type: (ReportType),
+  //     resolve(parent, args) {
+  //         return Report.findById(parent.reportId);
+  //     }
+  // }
 });
+
 
 // ---------------- REPORT TYPE -----------------
 const ReportType = new GraphQLObjectType({
@@ -136,6 +143,13 @@ const RootQuery = new GraphQLObjectType({
       resolve(parent, args) { 
         return Report.find();
       }
+    },
+    report: {
+      type: ReportType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) { 
+        return Report.findById(args.id);
+      },
        },
     users: {
       type: new GraphQLList(UserType),
@@ -267,6 +281,60 @@ const mutation = new GraphQLObjectType({
         return report.save();
        }
     },
+        // ----- UPDATE REPORT -----
+        updateReport: {
+          type: ReportType,
+          args: {
+            id: { type: GraphQLID },
+            storeName: { type: GraphQLString },
+            beginDate: { type: GraphQLString },
+            endDate: { type: GraphQLString },
+            machineNumber: { type: GraphQLInt },
+            lifetimeIn: { type: GraphQLInt },
+            lifetimeOut: { type: GraphQLInt },
+            lifetimeTotal: { type: GraphQLInt },
+            previousIn: { type: GraphQLInt },
+            previousOut: { type: GraphQLInt },
+            periodIn: { type: GraphQLInt },
+            periodOut: { type: GraphQLInt },
+            net: { type: GraphQLInt },
+            locationPercentage: { type: GraphQLInt },
+            operatorPercentage: { type: GraphQLInt },
+            profit: { type: GraphQLInt },
+            collect: { type: GraphQLInt },
+            paidOut: { type: GraphQLInt },
+            locationTotal: { type: GraphQLInt },
+            operatorTotal: { type: GraphQLInt },
+            signature: { type: GraphQLString },
+          },
+          resolve(parent, args) {
+              return Report.findByIdAndUpdate(args.id, {
+                  $set: {
+                  storeName: args.storeName,
+                  beginDate: args.beginDate,
+                  endDate: args.endDate,
+                  machineNumber: args.machineNumber,
+                  lifetimeIn: args.lifetimeIn,
+                  lifetimeOut: args.lifetimeOut,
+                  lifetimeTotal: args.lifetimeTotal,
+                  previousIn: args.previousIn,
+                  previousOut: args.previousOut,
+                  periodIn: args.periodIn,
+                  periodOut: args.periodOut,
+                  net: args.net,
+                  locationPercentage: args.locationPercentage,
+                  operatorPercentage: args.operatorPercentage,
+                  profit: args.profit,
+                  collect: args.collect,
+                  paidOut: args.paidOut,
+                  locationTotal: args.locationTotal,
+                  operatorTotal: args.operatorTotal,
+                  signature: args.signature,
+                  },
+                //   if it is not there, it will create a new one
+              }, { new: true });
+           }
+      },
     // ----DELETE REPORT ------
     deleteReport: {
       type: ReportType,
@@ -296,6 +364,25 @@ const mutation = new GraphQLObjectType({
         return user.save();
       },
     },
+    // ----- UPDATE USER-----
+updateUser: {
+      type: UserType,
+      args: {
+        id: { type: GraphQLID },
+        username: { type: GraphQLString },
+        email: { type: GraphQLString },
+        password: { type: GraphQLString },
+  },
+  resolve(parent, args) {
+    return User.findByIdAndUpdate(args.id, {
+      $set: {
+        username: args.username,
+        email: args.email,
+        password: args.password,
+      },
+    }, { new: true });
+  }
+},
     // ----- DELETE USER -----
     deleteUser: {
       type: UserType,
@@ -319,7 +406,7 @@ const mutation = new GraphQLObjectType({
         contactInfo: { type: GraphQLString },
         whenCanContact: { type: GraphQLString },
         directions: { type: GraphQLString },
-        // gameId: { type: (GraphQLID) }
+        gameId: { type: new GraphQLList(GraphQLID) }
       },
       resolve(parent, args) {
         // create a new store
@@ -332,6 +419,7 @@ const mutation = new GraphQLObjectType({
           contactInfo: args.contactInfo,
           whenCanContact: args.whenCanContact,
           directions: args.directions,
+
           gameId: args.gameId,
         });
         // save new store to database
@@ -351,24 +439,22 @@ const mutation = new GraphQLObjectType({
               contactInfo: { type: (GraphQLString) },
               whenCanContact: { type: (GraphQLString) },
               directions: { type: (GraphQLString) },
-                gameId: { type: new GraphQLList[(GraphQLID)] }
+                gameId: { type: GraphQLID },
           },
           resolve(parent, args) {
-              return Store.findByIdAndUpdate(args.id, {
-                  $set: {
-                      routeOrder: args.routeOrder,
-                      storeName: args.storeName,
-                      storeAddress: args.storeAddress,
-                      region: args.region,
-                      contactName: args.contactName,
-                      contactInfo: args.contactInfo,
-                      whenCanContact: args.whenCanContact,
-                      directions: args.directions,
-                        // gameId: args.gameId,
-                }, 
-                $push: [{
-                    gameId: args.gameId,
-                }],
+            return Store.findByIdAndUpdate(args.id, {
+              $set: {
+                routeOrder: args.routeOrder,
+                storeName: args.storeName,
+                storeAddress: args.storeAddress,
+                region: args.region,
+                contactName: args.contactName,
+                contactInfo: args.contactInfo,
+                whenCanContact: args.whenCanContact,
+                directions: args.directions,
+                 gameId: args.gameId ,
+              },
+              
                 //   if it is not there, it will create a new one
               }, { new: true });
            }
@@ -403,7 +489,27 @@ const mutation = new GraphQLObjectType({
         return game.save();
       },
     },
-
+    // ----- UPDATE GAME -----
+    updateGame: {
+      type: GameType,
+      args: {
+        id: { type: GraphQLNonNull(GraphQLID) },
+        gameType: { type: GraphQLString },
+        gameBrand: { type: GraphQLString },
+        machineNumber: { type: GraphQLInt },
+        reportId: { type: GraphQLID },
+      },
+      resolve(parent, args) { 
+        return Game.findByIdAndUpdate(args.id, {
+          $set: {
+            gameType: args.gameType,
+            gameBrand: args.gameBrand,
+            machineNumber: args.machineNumber,
+            storeId: args.storeId,
+          },
+        }, { new: true });
+       }
+    },
     // ----- DELETE GAME -----
     deleteGame: {
       type: GameType,
@@ -446,7 +552,24 @@ const mutation = new GraphQLObjectType({
               });
               return storeRegion.save();
            },
+    },
+    // ----- UPDATE REGION -----
+    updateRegion: {
+      type: RegionType,
+      args: {
+        id: { type: GraphQLNonNull(GraphQLID) },
+        regionName: { type: GraphQLString },
+        storeId: { type: GraphQLID },
       },
+      resolve(parent, args) { 
+        return Region.findByIdAndUpdate(args.id, {
+          $set: {
+            regionName: args.regionName,
+            storeId: args.storeId,
+          },
+        }, { new: true });
+       }
+    },
     // ----- DELETE REGION -----
     deleteRegion: {
       type: RegionType,

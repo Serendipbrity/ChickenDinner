@@ -14,6 +14,14 @@ const GameSchema = new mongoose.Schema(
     machineNumber: {
       type: Number,
     },
+    reportId: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Report",
+    }],
+    storeId: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Store",
+    }],
   },
   {
     timestamps: true,
