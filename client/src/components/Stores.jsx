@@ -3,6 +3,8 @@ import StoreRow from "./StoreRow";
 import Spinner from "./Spinner";
 import { Link } from "react-router-dom";
 import { GET_STORES } from "../queries/storeQueries";
+import AddStore from "./AddStore";
+
 
 export default function Stores() {
   const { loading, error, data } = useQuery(GET_STORES);
@@ -12,7 +14,7 @@ export default function Stores() {
     <>
       <div>
         <div id="routesHeader">Stores</div>
-
+    <AddStore/>
         {!loading && !error && (
           <table className="table table-hover mt-3">
             <thead className="colNames">

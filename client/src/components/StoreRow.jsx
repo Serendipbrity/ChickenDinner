@@ -2,7 +2,7 @@ import { FaTrash } from "react-icons/fa";
 import { useMutation } from "@apollo/client";
 import { GET_STORES } from "../queries/storeQueries";
 // import { ADD_STORE } from "../mutations/storeMutations";
-import Games from "./Games";
+// import Games from "./Games";
 import { DELETE_STORE } from "../mutations/storeMutations";
 import Reports from "./Reports";
 
@@ -21,7 +21,7 @@ export default function StoreRow({ store }) {
   });
     return (
    
-        <tr>
+        <tr className="storeRow">
                  <a href={`/stores/${store.id}`} path="/" element={<Reports />}>
         View Reports
       </a>

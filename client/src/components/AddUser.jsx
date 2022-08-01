@@ -5,8 +5,6 @@ import { ADD_USER } from "../mutations/userMutations";
 import {GET_USERS} from "../queries/userQueries";
 
 
-
-
 export default function AddUser() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -51,7 +49,7 @@ export default function AddUser() {
           <div>Add Employee</div>
         </div>
       </button>
-
+{/* 
       <button
         id="btnM"
         type="button"
@@ -63,7 +61,7 @@ export default function AddUser() {
           <FaUser className="icon" />
           <div>Add Manager</div>
         </div>
-      </button>
+      </button> */}
 
       <div
         className="modal fade"
@@ -75,7 +73,7 @@ export default function AddUser() {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="addUserModelLabel">
-                Add Employee
+                New Employee
               </h5>
               <button
                 type="button"

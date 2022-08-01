@@ -11,7 +11,14 @@ const ADD_STORE = gql`
         contactName
         contactInfo
         whenCanContact
-        directions
+        directions {
+          game {
+            id
+            gameType
+            gameBrand
+            machineNumber
+          }
+        }
     }
   }`;
 

@@ -2,6 +2,8 @@ import Spinner from './Spinner';
 import { useQuery } from '@apollo/client';
 import  RegionCard  from './RegionCard';
 import { GET_REGIONS } from '../queries/regionQueries';
+// import Spreadsheet from './Spreadsheet.jsx';
+import Reports from './Reports';
 
 
 export default function Regions() {
@@ -17,6 +19,8 @@ export default function Regions() {
                   <RegionCard key={region.id} region={region} />
               ))}
           </div>
+          {/* <Reports /> */}
+          {/* <Spreadsheet/> */}
     </>
   )
 }

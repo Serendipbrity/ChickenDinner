@@ -42,6 +42,35 @@ thead {
   border-bottom: solid 1px gray;
 }
 
+.storeRow {
+  border-bottom: solid 1px lightgray;
+
+}
+#reportHead {
+  background-color: rgba(126, 107, 143, .2)
+}
+
+th:hover {
+  background-color: rgba(126, 107, 143, .1)
+}
+
+.reportColor {
+  color: #df3ca6;
+}
+
+/* override default color to hide my "separate" spreader */
+.table>:not(caption)>*>*.separate{
+  background-color: black;
+}
+.separate {
+  color: black;
+}
+
+.separate:hover {
+  color: black;
+  background-color: black;
+}
+
 .colNames {
   font-weight: 700;
 
@@ -50,6 +79,16 @@ thead {
 td {
   padding-left: 15px;
 
+}
+
+table{
+  margin: 25px;
+  margin-top: 50px;
+  padding: 25px;
+}
+
+thead {
+  margin: 25px;
 }
 
 .btn {

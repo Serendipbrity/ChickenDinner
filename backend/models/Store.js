@@ -14,12 +14,12 @@ const StoreSchema = new mongoose.Schema(
     },
     storeName: {
       type: String,
-      required: [true, "Store name is required"],
+      // required: [true, "Store name is required"],
     },
     storeAddress: {
       // anything goes
       type: mongoose.Schema.Types.Mixed,
-      required: [true, "Store address is required"],
+      // required: [true, "Store address is required"],
       // unique: true
     },
     region: {
@@ -37,6 +37,10 @@ const StoreSchema = new mongoose.Schema(
     directions: {
       type: String,
     },
+    reportId: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Report",
+    }],
     // games: [Game]
     gameId: [{
       type: mongoose.Schema.Types.ObjectId,

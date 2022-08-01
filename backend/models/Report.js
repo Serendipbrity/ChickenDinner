@@ -26,6 +26,9 @@ const ReportSchema = new mongoose.Schema(
     lifetimeTotal: {
       type: Number,
     },
+    pOutTotal: {
+      type: Number,
+    },
     previousIn: {
       type: Number,
     },
@@ -65,6 +68,18 @@ const ReportSchema = new mongoose.Schema(
     signature: {
       type: String,
     },
+    gameId: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Game",
+    }],
+    storeId: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Store",
+    }],
+    regionId: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Region",
+    }],
   },
   {
     timestamps: true,

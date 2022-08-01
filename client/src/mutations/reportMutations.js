@@ -8,6 +8,7 @@ const ADD_REPORT = gql`
      $lifetimeIn: Int, 
      $lifetimeOut:Int
     , $lifetimeTotal:Int
+    , $pOutTotal:Int
     , $previousIn:Int
     , $previousOut:Int
     , $periodIn:Int
@@ -21,7 +22,7 @@ const ADD_REPORT = gql`
     , $locationTotal:Int
     , $operatorTotal:Int
     , $signature: String) {
-    addReport(storeName: $storeName, beginDate: $beginDate, machineNumber: $machineNumber, lifetimeIn: $lifetimeIn, lifetimeOut: $lifetimeOut, lifetimeTotal: $lifetimeTotal, previousIn: $previousIn, previousOut: $previousOut, periodIn: $periodIn, periodOut: $periodOut, net: $net, locationPercentage: $locationPercentage, operatorPercentage: $operatorPercentage, profit: $profit, collect: $collect, paidOut: $paidOut, locationTotal: $locationTotal, operatorTotal: $operatorTotal, signature: $signature) {
+    addReport(storeName: $storeName, beginDate: $beginDate, machineNumber: $machineNumber, lifetimeIn: $lifetimeIn, lifetimeOut: $lifetimeOut, lifetimeTotal: $lifetimeTotal, pOutTotal: $pOutTotal,previousIn: $previousIn, previousOut: $previousOut, periodIn: $periodIn, periodOut: $periodOut, net: $net, locationPercentage: $locationPercentage, operatorPercentage: $operatorPercentage, profit: $profit, collect: $collect, paidOut: $paidOut, locationTotal: $locationTotal, operatorTotal: $operatorTotal, signature: $signature) {
       id
       storeName
         beginDate
@@ -30,6 +31,7 @@ const ADD_REPORT = gql`
         lifetimeIn
         lifetimeOut
         lifetimeTotal
+        pOutTotal
         previousIn
         previousOut
         periodIn
@@ -47,8 +49,8 @@ const ADD_REPORT = gql`
   }`;
 
 const UPDATE_REPORT = gql`
-  mutation updateReport($id: ID!, $storeName: String, $beginDate: String, $endDate: String, $machineNumber: String, $lifetimeIn: Int, $lifetimeOut:Int, $lifetimeTotal:Int, $previousIn:Int, $previousOut:Int, $periodIn:Int, $periodOut:Int, $net:Int, $locationPercentage:Int, $operatorPercentage:Int, $profit:Int, $collect:Int, $paidOut:Int, $locationTotal:Int, $operatorTotal:Int, $signature: String) {
-    updateReport(id: $id, storeName: $storeName, beginDate: $beginDate, machineNumber: $machineNumber, lifetimeIn: $lifetimeIn, lifetimeOut: $lifetimeOut, lifetimeTotal: $lifetimeTotal, previousIn: $previousIn, previousOut: $previousOut, periodIn: $periodIn, periodOut: $periodOut, net: $net, locationPercentage: $locationPercentage, operatorPercentage: $operatorPercentage, profit: $profit, collect: $collect, paidOut: $paidOut, locationTotal: $locationTotal, operatorTotal: $operatorTotal, signature: $signature) {
+  mutation updateReport($id: ID!, $storeName: String, $beginDate: String, $endDate: String, $machineNumber: String, $lifetimeIn: Int, $lifetimeOut:Int, $pOutTotal:Int,$lifetimeTotal:Int, $previousIn:Int, $previousOut:Int, $periodIn:Int, $periodOut:Int, $net:Int, $locationPercentage:Int, $operatorPercentage:Int, $profit:Int, $collect:Int, $paidOut:Int, $locationTotal:Int, $operatorTotal:Int, $signature: String) {
+    updateReport(id: $id, storeName: $storeName, beginDate: $beginDate, machineNumber: $machineNumber, lifetimeIn: $lifetimeIn, lifetimeOut: $lifetimeOut, lifetimeTotal: $lifetimeTotal, pOutTotal: $pOutTotal, previousIn: $previousIn, previousOut: $previousOut, periodIn: $periodIn, periodOut: $periodOut, net: $net, locationPercentage: $locationPercentage, operatorPercentage: $operatorPercentage, profit: $profit, collect: $collect, paidOut: $paidOut, locationTotal: $locationTotal, operatorTotal: $operatorTotal, signature: $signature) {
         id
         storeName
         beginDate
@@ -57,6 +59,7 @@ const UPDATE_REPORT = gql`
         lifetimeIn
         lifetimeOut
         lifetimeTotal
+        pOutTotal
         previousIn
         previousOut
         periodIn
@@ -81,6 +84,7 @@ mutation deleteReport($storeName: String,
     $lifetimeIn: Int, 
     $lifetimeOut:Int
    , $lifetimeTotal:Int
+    , $pOutTotal:Int
    , $previousIn:Int
    , $previousOut:Int
    , $periodIn:Int
@@ -94,7 +98,7 @@ mutation deleteReport($storeName: String,
    , $locationTotal:Int
    , $operatorTotal:Int
    , $signature: String) {
-   deleteReport(storeName: $storeName, beginDate: $beginDate, machineNumber: $machineNumber, lifetimeIn: $lifetimeIn, lifetimeOut: $lifetimeOut, lifetimeTotal: $lifetimeTotal, previousIn: $previousIn, previousOut: $previousOut, periodIn: $periodIn, periodOut: $periodOut, net: $net, locationPercentage: $locationPercentage, operatorPercentage: $operatorPercentage, profit: $profit, collect: $collect, paidOut: $paidOut, locationTotal: $locationTotal, operatorTotal: $operatorTotal, signature: $signature) {
+   deleteReport(storeName: $storeName, beginDate: $beginDate, machineNumber: $machineNumber, lifetimeIn: $lifetimeIn, lifetimeOut: $lifetimeOut, lifetimeTotal: $lifetimeTotal, pOutTotal: $pOutTotal,previousIn: $previousIn, previousOut: $previousOut, periodIn: $periodIn, periodOut: $periodOut, net: $net, locationPercentage: $locationPercentage, operatorPercentage: $operatorPercentage, profit: $profit, collect: $collect, paidOut: $paidOut, locationTotal: $locationTotal, operatorTotal: $operatorTotal, signature: $signature) {
      id
      storeName
        beginDate
@@ -103,6 +107,7 @@ mutation deleteReport($storeName: String,
        lifetimeIn
        lifetimeOut
        lifetimeTotal
+       pOutTotal
        previousIn
        previousOut
        periodIn

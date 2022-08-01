@@ -11,6 +11,7 @@ query reports {
         lifetimeIn
         lifetimeOut
         lifetimeTotal
+        pOutTotal
         previousIn
         previousOut
         periodIn
@@ -39,6 +40,7 @@ query report($id: ID!) {
         lifetimeIn
         lifetimeOut
         lifetimeTotal
+        pOutTotal
         previousIn
         previousOut
         periodIn
