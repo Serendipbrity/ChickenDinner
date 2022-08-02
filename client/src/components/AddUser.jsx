@@ -87,9 +87,13 @@ export default function AddUser() {
                 <div className="mb-3">
                   <label className="form-label" >Username: </label>
                                   <input type="text" className="form-control" id="username" value={username} onChange={(e) => setUsername(e.target.value)}></input>
-                                  <label className="form-label" >Email: </label>
+                </div>
+                <div className="mb-3">
+                  <label className="form-label" >Email: </label>
                                   <input type="email" className="form-control" id="email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
-                                  <label className="form-label" >Password: </label>
+                </div>
+                <div className="mb-3">
+                  <label className="form-label" >Password: </label>
                                   <input type="text" className="form-control" id="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
                               </div>
                               <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Submit</button>

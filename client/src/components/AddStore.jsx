@@ -78,19 +78,29 @@ export default function AddStore() {
             </div>
             <div className="modal-body">
               <form onSubmit={onSubmit}>
-                <div className="mb-3">
-                  <label className="form-label" >Store Name: </label>
+                             <div className="mb-3">
+                                 <label className="form-label" >Store Name: </label>
                                   <input type="text" className="form-control" id="storeName" value={storeName} onChange={(e) => setStoreName(e.target.value)}></input>
-                                  {/* <label className="form-label" >Store Address: </label> */}
-                                  {/* <input type="text" className="form-control" id="storeAddress" value={storeAddress} onChange={(e) => setStoreAddress(e.target.value)}></input>
+                              </div>
+                              <div className="mb-3">
+                                  <label className="form-label" >Store Address: </label> 
+                                  <input type="text" className="form-control" id="storeAddress" value={storeAddress} onChange={(e) => setStoreAddress(e.target.value)}></input>
+                              </div>
+                              <div className="mb-3">
                                   <label className="form-label" >Contact Name: </label>
                                   <input type="text" className="form-control" id="contactName" value={contactName} onChange={(e) => setContactName(e.target.value)}></input>
+                              </div>
+                              <div>
                                   <label className="form-label" >Contact Info: </label>
                                   <input type="text" className="form-control" id="contactInfo" value={contactInfo} onChange={(e) => setContactInfo(e.target.value)}></input>
+                              </div>
+                              <div className="mb-3">
                                   <label className="form-label" >When Can Contact: </label>
                                   <input type="text" className="form-control" id="whenCanContact" value={whenCanContact} onChange={(e) => setWhenCanContact(e.target.value)}></input>
+                              </div>
+                              <div className="mb-3">
                                   <label className="form-label" >Directions: </label>
-                                  <input type="text" className="form-control" id="directions" value={directions} onChange={(e) => setDirections(e.target.value)}></input> */}
+                                  <input type="text" className="form-control" id="directions" value={directions} onChange={(e) => setDirections(e.target.value)}></input>
                               </div>
                               <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Submit</button>
               </form>

@@ -30,13 +30,14 @@ code {
 #routesHeader {
   margin-top: 20px;
   margin-bottom: 20px;
+  margin-left: 25px;
   font-size: 25px;
   font-weight: bold;
 }
 
-table {
+/* table {
   margin: 15px;
-}
+} */
 
 thead {
   border-bottom: solid 1px gray;

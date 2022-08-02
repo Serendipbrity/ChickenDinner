@@ -21,10 +21,12 @@ export default function StoreRow({ store }) {
   });
     return (
    
-        <tr className="storeRow">
+      <tr className="storeRow">
+        <td>
                  <a href={`/stores/${store.id}`} path="/" element={<Reports />}>
         View Reports
-      </a>
+          </a>
+          </td>
       <td>{store.routeOrder}</td>
         <td>{store.storeName}</td>
       <td>{store.storeAddress}</td>

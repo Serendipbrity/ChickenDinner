@@ -404,7 +404,7 @@ updateUser: {
       type: StoreType,
       args: {
         routeOrder: { type: GraphQLInt },
-        storeName: { type: GraphQLNonNull(GraphQLString) },
+        storeName: { type: (GraphQLString) },
         storeAddress: { type: (GraphQLString) },
         region: { type: (GraphQLString) },
         contactName: { type: GraphQLString },

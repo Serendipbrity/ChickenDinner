@@ -11,20 +11,10 @@ export default function Reports() {
   if (error) return <p>Something went wrong</p>;
   return (
     <>
-      {/* <div className="container"> */}
-      <div className="row">
-        <div id="routesHeader" className="col-9">Reports</div>
-            {/* back button */}
-      <div className="w-75 p-5 col" >
-        <Link to="/" className="btn btn-sm w-25 mx-5 align-items-right btn-primary">
-          Back
-        </Link>
-          </div>
-          {/* </div> */}
-
+   
         {!loading && !error && (
           <table className="table table-hover mt-3">
- 
+      <div id="routesHeader" className="">Reports</div>
             <tbody>
               {data.reports.map((report) => (
                 <ReportRow key={report.id} report={report} />
@@ -32,8 +22,13 @@ export default function Reports() {
             </tbody>
           </table>
         )}
-      </div>
   
+           {/* back button */}
+           <div className="w-75 p-5 col" >
+        <Link to="/" className="btn btn-sm mx-5 align-items-right btn-primary">
+          Back
+        </Link>
+          </div>
     </>
   );
 }

@@ -4,6 +4,7 @@ import Spinner from "./Spinner";
 import { Link } from "react-router-dom";
 import { GET_STORES } from "../queries/storeQueries";
 import AddStore from "./AddStore";
+import EditStoreForm from "./EditStoreForm";
 
 
 export default function Stores() {
@@ -14,7 +15,8 @@ export default function Stores() {
     <>
       <div>
         <div id="routesHeader">Stores</div>
-    <AddStore/>
+        <AddStore />
+        {/* <EditStoreForm store={data.store}/> */}
         {!loading && !error && (
           <table className="table table-hover mt-3">
             <thead className="colNames">
