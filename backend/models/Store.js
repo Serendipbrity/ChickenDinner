@@ -57,12 +57,10 @@ const StoreSchema = new mongoose.Schema(
   }
 );
 
+
+
 // model name is Store and then the schema is storeSchema
 const Store = model("Store", StoreSchema);
 module.exports = { Store };
 
 
-
-// "region": "62e1d4485ef61646250895b6"
-// "region": "West"
-// "region": "62e1d4485ef61646250895b6"
