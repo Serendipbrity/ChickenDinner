@@ -14,8 +14,9 @@ export default function Stores() {
   return (
     <>
       <div>
+      <AddStore />
         <div id="routesHeader">Stores</div>
-        <AddStore />
+    
         {/* <EditStoreForm store={data.store}/> */}
         {!loading && !error && (
           <table className="table table-hover mt-3">

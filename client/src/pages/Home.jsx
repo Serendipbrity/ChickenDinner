@@ -4,15 +4,19 @@ import Regions from '../components/Regions';
 // import Games from '../components/Games';
 import AddUser from '../components/AddUser';
 import EditUserForm from '../components/EditUserForm';
+import Login from './Login';
+import Signup from './Signup';
 
 export default function Home() {
   return (
     <div>
-          <Regions />
+          {/* <Regions /> */}
           {/* if logged in as manager, show tasks and schedules in nav bar */}
           {/* if logged in as employee, show schedule in nav bar */}
-      <Users />
-      <AddUser />
+      {/* <Users /> */}
+      {/* <AddUser /> */}
+      <Login />
+      {/* <Signup /> */}
       {/* <EditUserForm/> */}
     </div>
   )
