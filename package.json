@@ -18,7 +18,7 @@
   "name": "chickendinner",
   "description": "ChickenDinner",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "start": "node backend/index.js",
     "dev": "nodemon backend/index.js"
