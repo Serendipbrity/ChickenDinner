@@ -3,6 +3,7 @@ import ReportRow from "./ReportRow";
 import Spinner from "./Spinner";
 import { Link } from "react-router-dom";
 import { GET_REPORTS } from "../queries/reportQueries";
+import AddReport from "./AddReport";
 
 
 export default function Reports() {
@@ -14,7 +15,8 @@ export default function Reports() {
    
         {!loading && !error && (
           <table className="table table-hover mt-3">
-      <div id="routesHeader" className="">Reports</div>
+          <div id="routesHeader" className="">Reports</div>
+          {/* <AddReport/> */}
             <tbody>
               {data.reports.map((report) => (
                 <ReportRow key={report.id} report={report} />

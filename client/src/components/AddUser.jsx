@@ -40,7 +40,7 @@ export default function AddUser() {
       <button
         id="btnE"
         type="button"
-        className="btn btn-secondary"
+        className="btn btn-secondary w-100 mt-4"
         data-bs-toggle="modal"
         data-bs-target="#addUserModel"
       >

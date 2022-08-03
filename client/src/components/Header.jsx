@@ -1,4 +1,5 @@
 import logo from './assets/logo.png';
+import Nav from './Nav';
 
 export default function Header() {
   return (
@@ -9,7 +10,8 @@ export default function Header() {
                       <img src={logo} alt='logo' className='mr-2'></img>
                       <div>Game Saver</div>
                     </div>
-              </a>
+        </a>
+        <Nav />
             </div>
     </nav>
   )

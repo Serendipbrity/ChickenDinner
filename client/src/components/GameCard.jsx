@@ -1,4 +1,4 @@
-import Stores from "./Stores";
+
 
 export default function GameCard({ game }) {
     return (
@@ -7,6 +7,7 @@ export default function GameCard({ game }) {
           <div className='card-body'>
             <div className='d-flex justify-content-between align-items-center'>
               <h5 className='card-title'>{game.gameType}</h5>
+              <h6> {game.machineNumber }</h6>
                         {/* <a className='btn btn-light' href={`/regions/${game.id}`} path="/" element={<Report />} > */}
                 View Reports
               {/* </a> */}

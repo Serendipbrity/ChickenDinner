@@ -5,6 +5,7 @@ import { GET_REGIONS } from '../queries/regionQueries';
 // import Spreadsheet from './Spreadsheet.jsx';
 import Users from './Users';
 import Reports from './Reports';
+// import AddRegion from './AddRegion';
 
 
 export default function Regions() {
@@ -15,12 +16,13 @@ export default function Regions() {
   return (
       <>
           <div id='routesHeader'>Routes</div>
+          {/* <AddRegion /> */}
           <div className='row mt-4'>
               {data.regions.map((region) => (
                   <RegionCard key={region.id} region={region} />
               ))}
           </div>
-          <Users />
+              
           {/* <Reports /> */}
           {/* <Spreadsheet/> */}
     </>
