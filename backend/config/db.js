@@ -5,7 +5,7 @@ require("dotenv").config({ path:path.resolve(__dirname, "../.env") });
 
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/GameSaver', {
+    const conn = await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/GameSaver', {
       useNewUrlParser: true,
       useUnifiedTopology: true
     }) ;
