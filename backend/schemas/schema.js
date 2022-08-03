@@ -380,7 +380,7 @@ updateUser: {
   },
   resolve(parent, args) {
     return User.findByIdAndUpdate(args.id, {
-      $set: {
+      $push: {
         username: args.username,
         email: args.email,
         password: args.password,

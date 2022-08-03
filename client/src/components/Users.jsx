@@ -2,6 +2,8 @@ import { useQuery } from '@apollo/client';
 import UserRow from './UserRow';
 // import Spinner from './Spinner';
 import { GET_USERS } from '../queries/userQueries';
+import AddUser from './AddUser';
+// import EditUserForm from './EditUserForm';
 
 
 export default function Users() {
@@ -25,6 +27,8 @@ export default function Users() {
                         {data.users.map(user => (
                             <UserRow key={user.id} user={user } />
                         ))}
+                        <AddUser />
+                        {/* <EditUserForm  /> */}
                     </tbody>
                 </table>
             )}

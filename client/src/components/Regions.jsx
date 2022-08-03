@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/client';
 import  RegionCard  from './RegionCard';
 import { GET_REGIONS } from '../queries/regionQueries';
 // import Spreadsheet from './Spreadsheet.jsx';
+import Users from './Users';
 import Reports from './Reports';
 
 
@@ -19,6 +20,7 @@ export default function Regions() {
                   <RegionCard key={region.id} region={region} />
               ))}
           </div>
+          <Users />
           {/* <Reports /> */}
           {/* <Spreadsheet/> */}
     </>
