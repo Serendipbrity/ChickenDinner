@@ -15,7 +15,6 @@ export { default as Regions } from './Regions';
 export { default as ReportRow } from './ReportRow';
 export { default as Reports } from './Reports';
 export { default as Spinner } from './Spinner';
-export { default as Spreadsheet } from './Spreadsheet';
 export { default as StoreRow } from './StoreRow';
 export { default as Stores } from './Stores';
 export { default as UserRow } from './UserRow';

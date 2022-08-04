@@ -1,6 +1,6 @@
 // const {postUser, getUsers, putUser, deleteUser} = require('../controller/userController');
 // const { users, stores, regions, games } = require('../sampleData');
-
+const { signToken } = require('../../client/src/utils/auth');
 
 const { User } = require("../models/User");
 const { Store } = require("../models/Store");
@@ -11,7 +11,6 @@ const { Report } = require('../models/Report');
 const { AuthenticationError } = require('apollo-server-express');
 const mongoose = require("mongoose");
 
-const {signToken} = require('../../client/src/utils/auth');
 
 const {
   GraphQLObjectType,
@@ -413,9 +412,9 @@ const mutation = new GraphQLObjectType({
           email: args.email,
           password: args.password,
         });
-        const token = signToken(user);
+        // const token = signToken(user);
         // save new user to database
-        return  token, (user.save()) ;
+        return /*token,*/ (user.save()) ;
       },
     },
     // ----- UPDATE USER-----

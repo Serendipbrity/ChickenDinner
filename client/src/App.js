@@ -6,7 +6,8 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import {setContext} from '@apollo/client/link/context';
 import {ApolloProvider, ApolloClient, InMemoryCache} from '@apollo/client';
-import React, { Component } from 'react';
+// import React, { Component } from 'react';
+import React from 'react';
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
@@ -18,17 +19,17 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
-module.exports = function (webpackEnv) {
+// module.exports = function (webpackEnv) {
 
-  return {
+//   return {
 
-    resolve: {
-fallback:  {"crypto": false, 
-  "util": false }
+//     resolve: {
+// fallback:  {"crypto": false, 
+//   "util": false }
 
-      }
-    }
-  }
+//       }
+//     }
+//   }
 
 
 // function to get rid of error message in console that we get from deleting without refreshing
