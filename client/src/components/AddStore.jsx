@@ -4,7 +4,7 @@ import { FaUser } from "react-icons/fa";
 import { useMutation } from "@apollo/client";
 import { ADD_STORE } from "../mutations/storeMutations";
 import {GET_STORES} from "../queries/storeQueries";
-
+import React, { Component } from 'react';
 
 export default function AddStore() {
     const [storeName, setStoreName] = useState('');
@@ -43,19 +43,21 @@ export default function AddStore() {
         setDirections("");
   };
   return (
-    <>
-      <button
+      <>
+          <div className="">
+          <button
         id="btnS"
         type="button"
         className="btn btn-secondary"
         data-bs-toggle="modal"
         data-bs-target="#addStoreModel"
       >
-        <div className="d-flex align-items-center">
-          <FaUser className="icon" />
+        <div className="align-items-center">
           <div>Add Store</div>
         </div>
           </button>
+          </div>
+
           
       <div
         className="modal fade"

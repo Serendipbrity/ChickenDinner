@@ -1,5 +1,6 @@
 import logo from './assets/logo.png';
 import Nav from './Nav';
+import React, { Component } from 'react';
 
 export default function Header() {
   return (

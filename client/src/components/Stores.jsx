@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { GET_STORES } from "../queries/storeQueries";
 import AddStore from "./AddStore";
 import EditStoreForm from "./EditStoreForm";
+import React, {Component} from 'react';
 
 
 export default function Stores() {
@@ -14,9 +15,13 @@ export default function Stores() {
   return (
     <>
       <div>
+        <div className="flex-container d-flex">
+          <div id="routesHeader" className="flex-child ">Stores</div>
+               {/* back button */}
+ 
       <AddStore />
-        <div id="routesHeader">Stores</div>
-    
+      
+        </div>
         {/* <EditStoreForm store={data.store}/> */}
         {!loading && !error && (
           <table className="table table-hover mt-3">
@@ -42,9 +47,8 @@ export default function Stores() {
           </table>
         )}
           </div>
-      {/* back button */}
-      <div className="w-75 p-5">
-        <Link to="/" className="btn btn-sm w-25 d-inline btn-primary">
+          <div className="m-3">
+        <Link to="/" className="btn btn-sm d-inline btn-primary mx-4 p-2">
           Back
         </Link>
       </div>

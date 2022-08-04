@@ -1,16 +1,49 @@
 @import url("https://cdn.syncfusion.com/ej2/bootstrap.css");
-body {
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+} */
+ /* :root {
+  --black-color: rgba(0, 0, 0, .9);
 }
 
-code {
+* {
+ background-color: var(--black-color);
+} */
+
+body {
+  margin: 0;
+  padding: 0;
+} 
+
+#NavBar {
+  margin: 0;
+  padding: 0;
+    position:absolute;
+    top:0px;
+    left:0px;
+    width:100%; 
+    background-color:#f26522;
+}
+
+#NavContent {
+  margin: 0 auto;
+}
+
+/* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+} */
+
+ #loginComp, #signupComp{
+ justify-content: center;
+ display: flex;
+ align-items: center;
+ margin-top: 10%;
 }
 
 .navbar-brand {
@@ -27,7 +60,7 @@ code {
   margin-right: 15px;
 }
 
-#routesHeader {
+#routesHeader, .userHeader {
   margin-top: 20px;
   margin-bottom: 20px;
   margin-left: 25px;
@@ -38,6 +71,23 @@ code {
 /* table {
   margin: 15px;
 } */
+/* .flex-container  {
+  display: flex;
+}
+
+.float-child {
+  /* flex: 2; */
+
+
+ .flex-child:first-child {
+  margin-left: 10px;
+  margin-right: 70%;
+} 
+
+/* .float-right {
+  width: 50%;
+  float: right;
+  }  */
 
 thead {
   border-bottom: solid 1px gray;

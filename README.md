@@ -25,7 +25,7 @@ npm i @apollo/client graphql react-router-dom react-icons
 npm start to run front end server (in client directory)
 npm install react-bootstrap bootstrap
 npm i @syncfusion/ej2-react-spreadsheet
-
+npm install jsonwebtoken
 
 ## Technologies
 React, Node, npm, Express, MongoDB, Mongoose, GraphQL, JSONWT, Apollo Server, nodemon, React Router, concurrently, faker, jwt-decode, bcrypt, inquirer, dotenv, colors, React Bootstrap, Bootstrap

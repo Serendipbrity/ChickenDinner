@@ -3,7 +3,7 @@ import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../mutations/userMutations";
 import React, { useState } from "react";
 import Regions from "../components/Regions";
-import Signup from "./Signup";
+import Signup from "../pages/Signup";
 
 import Auth from '../utils/auth';
 
@@ -43,7 +43,7 @@ const Login = (props) => {
   };
 
   return (
-    <main className="flex-row justify-center mb-4">
+    <main className="flex-row justify-center mb-4" id="loginComp">
       <div className="col-12 col-md-6">
         <div className="card">
           <h4 className="card-header">Login</h4>

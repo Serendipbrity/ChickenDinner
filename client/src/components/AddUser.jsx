@@ -3,7 +3,7 @@ import { FaUser } from "react-icons/fa";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../mutations/userMutations";
 import {GET_USERS} from "../queries/userQueries";
-
+import React, { Component } from 'react';
 
 export default function AddUser() {
     const [username, setUsername] = useState('');
@@ -40,7 +40,7 @@ export default function AddUser() {
       <button
         id="btnE"
         type="button"
-        className="btn btn-secondary w-100 mt-4"
+        className="btn btn-secondary mt-4 flex-child d-flex"
         data-bs-toggle="modal"
         data-bs-target="#addUserModel"
       >

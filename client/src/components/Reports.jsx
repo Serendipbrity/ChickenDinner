@@ -4,6 +4,7 @@ import Spinner from "./Spinner";
 import { Link } from "react-router-dom";
 import { GET_REPORTS } from "../queries/reportQueries";
 import AddReport from "./AddReport";
+import React, {Component} from 'react';
 
 
 export default function Reports() {

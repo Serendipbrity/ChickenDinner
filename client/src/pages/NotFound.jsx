@@ -1,5 +1,5 @@
 // ----- IF PAGE DOES NOT EXIST -----
-
+import React, { Component } from 'react';
 import { FaExclamationTriangle } from 'react-icons/fa';
 import {Link} from "react-router-dom";
 

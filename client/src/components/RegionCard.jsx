@@ -1,4 +1,5 @@
 import Stores from "./Stores";
+import React, { Component } from 'react';
 
 export default function RegionCard({ region }) {
     return (

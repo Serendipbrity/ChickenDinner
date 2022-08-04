@@ -6,7 +6,7 @@ import { GET_REGIONS } from '../queries/regionQueries';
 import Users from './Users';
 import Reports from './Reports';
 // import AddRegion from './AddRegion';
-
+import React, {Component} from 'react';
 
 export default function Regions() {
     const { loading, error, data } = useQuery(GET_REGIONS);

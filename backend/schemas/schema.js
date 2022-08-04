@@ -1,11 +1,17 @@
 // const {postUser, getUsers, putUser, deleteUser} = require('../controller/userController');
 // const { users, stores, regions, games } = require('../sampleData');
+
+
 const { User } = require("../models/User");
 const { Store } = require("../models/Store");
 const { Region } = require("../models/Region");
 const { Game } = require("../models/Game");
-const {Report} = require('../models/Report');
+const { Report } = require('../models/Report');
+
+const { AuthenticationError } = require('apollo-server-express');
 const mongoose = require("mongoose");
+
+const {signToken} = require('../../client/src/utils/auth');
 
 const {
   GraphQLObjectType,
@@ -15,8 +21,18 @@ const {
   GraphQLList,
   GraphQLInt,
   GraphQLNonNull,
-  GraphQLEnumType
+  GraphQLEnumType, 
+  tokenAuthMiddleware
 } = require("graphql");
+
+// ------- LOGIN TYPE DEF ----------
+const LoginType = new GraphQLObjectType({
+  name: "Auth",
+  fields: () => ({
+    token: ID,
+    user: User
+  })
+});
 
 // --------------- USER TYPE ------------------
 const UserType = new GraphQLObjectType({
@@ -350,6 +366,38 @@ const mutation = new GraphQLObjectType({
         return Report.findByIdAndRemove(args.id);
        }
     },
+    // -----USER LOGIN ------
+    login: {
+      type: UserType,
+      args: {
+        email: { type: GraphQLString },
+        password: { type: GraphQLString },
+      },
+      async resolve(parent, args) {
+        const user = await User.findOne ({ email: args.email })
+        if(!user) {
+        throw new AuthenticationError("User not found");
+      }
+      const correctPw = await User.findOne ({ password: args.password })
+      if(!correctPw) {
+        throw new AuthenticationError("User not found");
+      }
+        const token = signToken(user);
+        return { token, user };
+    }
+    },
+//     login: async {(parent, { email, password }) => {
+//       const user = await User.findOne({ email });
+//       if (!user) {
+//         throw new AuthenticationError("User not found");
+//       }
+//       const correctPw = await user.isCorrectPassword(password);
+//       if (!correctPw) { 
+//         throw new AuthenticationError("User Not found");
+//       }
+//       return user;
+// }
+// },
     // ---- ADD USER -----
     addUser: {
       type: UserType,
@@ -358,15 +406,16 @@ const mutation = new GraphQLObjectType({
         email: { type: GraphQLNonNull(GraphQLString) },
         password: { type: GraphQLNonNull(GraphQLString) },
       },
-      resolve(parent, args) {
+      async resolve(parent, args) {
         // create a new user
-        const user = new User({
+        const user = await new User({
           username: args.username,
           email: args.email,
           password: args.password,
         });
+        const token = signToken(user);
         // save new user to database
-        return user.save();
+        return  token, (user.save()) ;
       },
     },
     // ----- UPDATE USER-----

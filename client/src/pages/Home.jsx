@@ -6,6 +6,7 @@ import AddUser from '../components/AddUser';
 import EditUserForm from '../components/EditUserForm';
 import Login from './Login';
 import Signup from './Signup';
+import React, {Component} from 'react';
 
 export default function Home() {
   return (

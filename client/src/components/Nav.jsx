@@ -4,12 +4,14 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import React, {Component} from 'react';
 
 
 function Navv() {
   return (
     <Navbar bg="light" expand="lg">
-      <Container fluid>
+          <Container fluid id='NavContent'>
+          <a className="navbar-brand" href="#"></a>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav

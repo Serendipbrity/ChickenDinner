@@ -1,19 +1,12 @@
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import Header from './components/Header';
-import Users from './components/Users';
-import AddUser from './components/AddUser';
-import Regions from './components/Regions';
-import Stores from './components/Stores';
-import Games from './components/Games';
+import { Header, Users, Stores, Spreadsheet, Spinner, Reports, Regions, Nav, Games, EditUserForm, EditStoreForm } from './components/index.js';
 import NotFound from './pages/NotFound';
-import Reports from './components/Reports';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import {setContext} from '@apollo/client/link/context';
-import {SpreadsheetComponent} from '@syncfusion/ej2-react-spreadsheet'
 import {ApolloProvider, ApolloClient, InMemoryCache} from '@apollo/client';
-
+import React, { Component } from 'react';
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
@@ -24,6 +17,19 @@ const authLink = setContext((_, { headers }) => {
     },
   };
 });
+
+module.exports = function (webpackEnv) {
+
+  return {
+
+    resolve: {
+fallback:  {"crypto": false, 
+  "util": false }
+
+      }
+    }
+  }
+
 
 // function to get rid of error message in console that we get from deleting without refreshing
 const cache = new InMemoryCache({

@@ -3,12 +3,23 @@ const colors = require("colors");
 const cors = require("cors");
 require("dotenv").config();
 const { graphqlHTTP } = require("express-graphql");
+const { ApolloServer } = require("apollo-server-express");
 const schema = require("./schemas/schema");
 const connectDB = require("./config/db");
 const PORT = process.env.PORT || 3000;
 
 const app = express();
 
+
+// module.exports = {
+//   resolve: {
+//     fallback: {
+//       stream: false,
+//       crypto: false,
+//       util: false
+//     }
+//   }
+// }
 // connect to database
 connectDB();
 

@@ -29,6 +29,14 @@ const server = new ApolloServer({
     resolvers,
 });
 
+// module.exports = {
+//     resolve: {
+//         fallback: {
+//             crypto: false,
+//             util: require.resolve("util/")
+//         }
+//     }
+// }
 // initialize express
 const app = express();
 

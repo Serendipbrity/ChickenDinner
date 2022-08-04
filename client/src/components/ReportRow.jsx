@@ -5,7 +5,7 @@ import { GET_REPORTS } from '../queries/reportQueries';
 import { DELETE_REPORT } from '../mutations/reportMutations';
 // import Spreadsheet from './Spreadsheet';
 // import Spreadsheet from "react-spreadsheet";
-
+import React, { Component } from 'react';
 
 
 export default function ReportRow({ report }) {

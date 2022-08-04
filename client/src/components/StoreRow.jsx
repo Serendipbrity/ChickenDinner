@@ -5,6 +5,7 @@ import { GET_STORES } from "../queries/storeQueries";
 // import Games from "./Games";
 import { DELETE_STORE } from "../mutations/storeMutations";
 import Reports from "./Reports";
+import React, { Component } from "react";
 
 export default function StoreRow({ store }) {
   const [deleteStore] = useMutation(DELETE_STORE, {

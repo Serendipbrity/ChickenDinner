@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "@syncfusion/ej2-react-spreadsheet": "^20.2.40",
     "apollo-server-express": "^3.10.0",
     "colors": "^1.4.0",
     "cors": "^2.8.5",
@@ -9,16 +8,36 @@
     "express-async-handler": "^1.2.0",
     "express-graphql": "^0.12.0",
     "graphql": "^15.8.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.4.7"
   },
   "devDependencies": {
     "concurrently": "^7.3.0",
     "nodemon": "^2.0.19"
   },
+  "browser": {
+    "crypto": false
+  },
+  "resolve.fallback": {
+    "util": false,
+    "buffer": false,
+    "stream": false,
+    "crypto": false,
+    "browserify": false
+  },
+  "resolve": {
+    "fallback": {
+      "util": false,
+      "buffer": false,
+      "stream": false,
+      "crypto": false,
+      "browserify": false
+    }
+  },
   "name": "chickendinner",
   "description": "ChickenDinner",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "start": "node backend/index.js",
     "dev": "nodemon backend/index.js"
