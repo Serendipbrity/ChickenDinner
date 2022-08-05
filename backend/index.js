@@ -7,7 +7,7 @@ const { ApolloServer } = require("apollo-server-express");
 const schema = require("./schemas/schema");
 const connectDB = require("./config/db");
 const PORT = process.env.PORT || 3000;
-
+const path = require("path");
 const app = express();
 
 
@@ -35,7 +35,7 @@ app.use(
 
 if (process.env.NODE_ENV === 'production') {
   // Exprees will serve up production assets
-  app.use(express.static('client/build'));
+  app.use(express.static(path.join(__dirname,'../client/build')));
 };
 
 app.listen(PORT, () => console.log(`Server running on PORT ${PORT}`));
