@@ -31,8 +31,10 @@ React, Node, npm, Express, MongoDB, Mongoose, GraphQL, JSONWT, Apollo Server, no
 
 ## Screenshot
 
+<img width="1223" alt="Screen Shot 2022-08-04 at 10 19 04 PM" src="https://user-images.githubusercontent.com/96275616/182991327-db89da93-8372-4202-9125-0205d9f071fc.png">
 
 ## Deployed Link
+https://safe-river-91585.herokuapp.com/
 
 
 ## Github Link
