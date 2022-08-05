@@ -33,6 +33,7 @@ React, Node, npm, Express, MongoDB, Mongoose, GraphQL, JSONWT, Apollo Server, no
 
 
 ## Deployed Link
+https://safe-river-91585.herokuapp.com/
 
 
 ## Github Link
